@@ -1,13 +1,14 @@
 angular.module('recipeApp').controller('collectionCtrl', function($scope, collectionServ, $state) {
 
     $scope.addNewRecipe = function(recipe) {
-
+      console.log("oh", recipe);
       var username = $scope.user.data.username;
       recipe.publisher = username;
 
       $('.signUpForm').trigger("reset");
       collectionServ.addOwnRecipes(recipe)
       .then(function(response) {
+        console.log('hey', response);
         $state.reload();
         return response;
       })
