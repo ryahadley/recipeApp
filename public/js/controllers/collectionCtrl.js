@@ -10,7 +10,7 @@ angular.module('recipeApp').controller('collectionCtrl', function($scope, collec
         var pic = ['../../styles/img/martha.jpg', '../../styles/img/martha.jpg', '../../styles/img/martha1.jpg', '../../styles/img/martha2.jpg',
         '../../styles/img/martha3.jpg', '../../styles/img/martha4.jpg', '../../styles/img/martha5.jpg'];
 
-        recipe.image_url = rand[pic];
+        recipe.image_url = pic[rand];
       }
 
       $('.signUpForm').trigger("reset");
@@ -42,7 +42,7 @@ angular.module('recipeApp').controller('collectionCtrl', function($scope, collec
     $scope.userMadeRecipes = function() {
       collectionServ.madeByUser()
       .then(function(response) {
-
+        console.log('my recipes', response);
         $scope.ownRecipies = response.data;
       })
     }
