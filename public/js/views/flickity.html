@@ -1,0 +1,18 @@
+<div class="gallery main-gallery">
+  <img src="../../styles/img/baking-background.jpg" alt="orange tree" />
+  <img src="../../styles/img/meat.jpg" alt="submerged" />
+  <img src="../../styles/img/woodpanels.jpg" alt="look-out" />
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.main-gallery').flickity({
+            // options
+            cellAlign: 'left',
+            autoPlay: true,
+            contain: true,
+            wrapAround: true,
+            resize: false
+        });
+    });
+</script>

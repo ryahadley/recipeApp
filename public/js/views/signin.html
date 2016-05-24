@@ -1,0 +1,48 @@
+<link rel='stylesheet' href='../../styles/signin.css'>
+
+  <div class="signinpage" ng-show="signinShown">
+
+  <div class='userLogin'>
+
+    <div id="justsignin">We'll get you right back to the action after you log in.</div>
+
+      <input class="username" type="text" ng-model="userInfo.username" placeholder="Username or email" ng-keyup="$event.keyCode == 13 && login(userInfo)">
+      <input class="password" type="password" ng-model="userInfo.password" placeholder="Password" ng-keyup="$event.keyCode == 13 && login(userInfo)">
+      <div id="forgot">
+        <div id="forgot"><input type="checkbox">Remeber Me</div> <div id="forgot"><a href="#">Forgot password?</a></div>
+      </div>
+      <button class="btn" id="button" type="button" ng-click="login(userInfo)">Log In</button>
+
+        <div id="skinny">Don't have an account? <a ng-click="showSignup()" id="bold">Sign Up</a></div>
+
+    </div>
+
+  </div>
+  <!-- <div class="social-wrap a">
+    <a href="/auth/facebook"><button id="facebook">Sign in with Facebook</button></a>
+
+    <button class="btn" type="button" ng-click="showSignup()">Sign Up</button>
+</div>  -->
+
+<div class="signuppage" ng-show="signupShown">
+
+<div class='userSignup'>
+
+  <div id="justsignup">We welcome you and your recipies.</div>
+
+    <input class="username" type="text" ng-model="User.name" placeholder="Your Name">
+    <input class="username" type="text" ng-model="User.username" placeholder="Username or email">
+    <input class="password" type="password" ng-model="User.password" placeholder="Password" ng-keyup="$event.keyCode == 13 && createUser(User)">
+    <div id="skinnybop">No specifics just whatever you'll remember.</div>
+    <!-- <div id="forgot">
+      <div id="forgot"><input type="checkbox">Remeber Me</div> <div id="forgot"><a href="#">Forgot password?</a></div>
+    </div> -->
+    <button class="btn" id="button" type="button" ng-click="createUser(User)">Sign Up</button>
+    <div id="skinnybop">or</div>
+    <button class="btn" id="button" ng-click="showSignup()">Cancel</button>
+
+      <div id="skinnybottom">We promise not to spam you.</div>
+
+  </div>
+
+</div>

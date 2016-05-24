@@ -1,0 +1,4 @@
+<div class="wrapper">
+    <input class='recipesearch' ng-model="ingredient" ng-keyup="$event.keyCode == 13 && showfood(ingredient); $event.keyCode == 13 &&searches(ingredient)" type="text" placeholder="Recipe Search..." />
+    <button class='searchbar' ng-click="showfood(ingredient); searches(ingredient)"><img class="searchIcon" src='../../styles/img/searchicon.png'></button>
+</div>

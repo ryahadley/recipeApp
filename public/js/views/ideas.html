@@ -1,0 +1,271 @@
+<link rel='stylesheet' href='../../styles/ideas.css'>
+
+<div id="banner"><div id="info">Ideas</div></div>
+
+<div class="ideasPage" ng-controller="ideasCtrl">
+
+  <div class="ideasBanner">
+
+    <div class="pageTabs">
+
+      <div class="pageTag" ng-click="tabShow()">In Your Fridge</div>
+      <div class="onPageBar"></div>
+
+    </div>
+    <div class="pageTabs">
+
+        <div class="pageTag" ng-click="tabShow2()">Popular Searches</div>
+        <div class="onPageBar"></div>
+
+    </div>
+    <div class="pageTabs">
+
+        <div class="pageTag" ng-click="tabShow3()">Stores Nearby</div>
+        <div class="onPageBar"></div>
+
+    </div>
+
+  </div>
+
+  <div class="inYourFridge" ng-show="fridgeShown">
+    <div class="fridge">
+      <div class="addToFridge">
+        <input class="added" type="text" ng-model='item' ng-keyup="$event.keyCode == 13 && addFridge(item)" placeholder="Add To Fridge">
+          <div class='icons'>
+            <img ng-click="addOne(); addFridge(item)" class="plus" src="../../styles/img/pluss.png">
+            <img ng-click="removeFridge(item)" class="minus" src="../../styles/img/minus.png">
+          </div>
+      </div>
+    </div>
+
+    <div class="repeat">
+      <div class="addToFridge" ng-repeat="food in foods">
+        <input class="added" type="text" ng-model='food.item' ng-keyup="$event.keyCode == 13 && addFridge(food.item)" placeholder="Add To Fridge">
+          <div class='icons'>
+            <img ng-click="addOne(); addFridge(food.item)" class="plus" src="../../styles/img/pluss.png">
+            <img ng-click="minusOne(); removeFridge(food.item)" class="minus" src="../../styles/img/minus.png">
+          </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="popularIngredients" ng-show="ingredientsShown">
+    <div ng-repeat="search in Searches" ng-click="showfood(search.title); searches(search.title)" id="test">{{search.title}}</div>
+  </div>
+
+  <div class="storesNearby"  ng-show="storesShown">
+
+    <html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+        body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 60vh;
+        width: 60vw;
+        margin: auto;
+        margin-bottom: 150px;
+        background: transparent url('http://studiosmacznego.com/img/portfolio/foodrush/foodrush-03.gif') no-repeat center center;
+
+      }
+      .controls {
+        margin-top: 10px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        opacity: 0;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 250px;
+        max-width: 300px;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+
+      .pac-container {
+        font-family: Roboto;
+      }
+
+      #finder {
+        margin: auto;
+        font-size: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #fff;
+      }
+
+      #type-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        padding: 5px 11px 0px 11px;
+      }
+
+      #type-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+      #target {
+        width: 345px;
+      }
+      @media(max-width: 650px) {
+        #pac-input {
+          width: 200px;
+        }
+        #map {
+          width: 80vw;
+        }
+      }
+      @media(max-width: 500px) {
+        #map {
+          height: 80vw;
+          width: 80vw;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="finder">Find Grocery Stores Nearby</div>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map"></div>
+    <script>
+      // This example adds a search box to a map, using the Google Place Autocomplete
+      // feature. People can enter geographical searches. The search box will return a
+      // pick list containing a mix of places and predicted search terms.
+
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      function initAutocomplete() {
+
+        if (navigator.geolocation)
+           {
+               navigator.geolocation.getCurrentPosition(showCurrentLocation);
+           }
+           else
+           {
+              alert("Geolocation API not supported.");
+           }
+
+           function showCurrentLocation(position)
+           {
+               var latitude = position.coords.latitude;
+               var longitude = position.coords.longitude;
+               var coords = new google.maps.LatLng(latitude, longitude);
+
+               var mapOptions = {
+               zoom: 15,
+               center: coords,
+               mapTypeControl: true,
+               mapTypeId: google.maps.MapTypeId.ROADMAP
+           };
+
+           setTimeout(function() {
+             $("#pac-input").css('opacity', '1');
+           }, 1000);
+
+           //create the map, and place it in the HTML map div
+           var map = new google.maps.Map(
+           document.getElementById("map"), mapOptions
+           );
+
+           //place the initial marker
+           var marker = new google.maps.Marker({
+           position: coords,
+           map: map,
+           title: "Current location!"
+           });
+
+          //  $('body').prepend('<input id="pac-input" class="controls" type="text" placeholder="Search Box">');
+
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+
+          map.fitBounds(bounds);
+        });
+      }
+
+
+    }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5unJRrmRR63TqoUP9H4Vp-eUW6DFqFCY&libraries=places&callback=initAutocomplete"
+         async defer></script>
+  </body>
+</html>
+
+
+  </div>
+
+</div>

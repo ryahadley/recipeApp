@@ -1,0 +1,237 @@
+<link rel='stylesheet' href='../../styles/collection.css'>
+<link rel='stylesheet' href='../../styles/recipes.css'>
+<link rel='stylesheet' href='../../styles/bootstrap.css'>
+
+
+<div id="banner"><div id="inform">Recipes</div></div>
+
+<!-- Whole page -->
+
+<div class="wholePage" ng-controller='collectionCtrl'>
+<div class="yourRecipes">
+
+<div class="recipesPage">
+
+  <h2 id="headers">Recipes you've added</h2>
+
+  <div class="center"><button class="btn" id="button" type="submit" ng-click="open()">Add Recipe</button></div>
+
+  <div modal="showModal" close="cancel()">
+    <div class="modal-header">
+        <h4>Add Recipe</h4>
+    </div>
+    <div class="modal-body">
+
+    <div class="recipeCard">
+      <div class="topRecipeCard"></div>
+      <div class="signUpContainer">
+        <div id="bordertop"></div>
+        <form class="signUpForm">
+          <div class="form"><input class='recipefield' type="text" placeholder="recipe name" ng-model="recipe.title"></div>
+          <div class="form"><input class='recipefield' type="text" placeholder="image link" ng-model="recipe.image_url"></div>
+          <div class="form"><textarea rows="5" class='recipefield' id="list" type="text" placeholder="ingredients" ng-model="recipe.ingredients"></textarea></div>
+          <div class="form"><textarea rows="3" class='recipefield' id="list" type="text" placeholder="directions" ng-model="recipe.directions"></textarea></div>
+          <!-- <div id="submit"><button class="btn btn-success" type="submit" ng-click="addNewRecipe(recipe); cancel()">Submit</button></div> -->
+        </form>
+      </div>
+    </div>
+
+    </div>
+    <div class="modal-footer">
+      <button id="submit" class="btn btn-success" type="submit" ng-click="addNewRecipe(recipe); cancel()">Submit</button>
+      <!-- <button class="btn btn-success" ng-click="ok()">Okay</button> -->
+      <button class="btn" ng-click="cancel()">Cancel</button>
+    </div>
+  </div>
+
+  </div>
+
+  <!-- Own recipes -->
+  <div class="recipesContainer" ng-repeat='recipe in ownRecipies track by $index'>
+
+
+    <!-- Modal for own recipes -->
+
+    <div modal="showModalOwn" id="modalCust" close="cancelcancel()">
+      <div class="modal-header">
+          <h4>{{title}}</h4>
+      </div>
+      <div class="modalCust-body">
+
+        <div class="recipeView">
+          <div class="recipeImage">
+            <img class="recipeImage" src='{{recipeImage}}'>
+          </div>
+
+          <div class="recipeDescription">
+            <h4 id="listofingredients">Ingredients</h4>
+          </div>
+
+          <div class="increaseServings">
+            <div class="selectServings" ng-show="servingsShown">
+              <div class="selectedServing" ng-show="servingsShown">
+                <div class="servingsSelector" id="toptop"><div id="toptop">Select Increase</div></div>
+              </div>
+              <div class="selectedServing" ng-show="servingsShown">
+                <div class="servingsSelector" ng-click="multiplyServings(list, .5)"><div>Cut in half</div><div>&#189;</div></div>
+              </div>
+              <div class="selectedServing" ng-show="servingsShown" ng-click="multiplyServings(list, 2)">
+                <div class="servingsSelector"><div>Double</div><div>X 2</div></div>
+              </div>
+              <div class="selectedServing" ng-show="servingsShown" ng-click="multiplyServings(list, 4)">
+                <div class="servingsSelector"><div>Quadruple</div><div>X 4</div></div>
+              </div>
+              <div id="customAdd" ng-show="custom">
+                <input type='number' ng-model='num' ng-keyup="$event.keyCode == 13 && multiplyServings(num)"><div ng-click='multiplyServings(num)'>X</div>
+              </div>
+              <div id="selectedServing" ng-show="pleasework" ng-show="servingsShown">
+                <div ng-click="addCustom()">Custom</div>
+              </div>
+            </div>
+            <div class="addServings" ng-show="servingsShown" ng-click="showServings()">
+              Cancel
+            </div>
+            <div class="addServings" ng-show="addShown" ng-click="showServings()">
+              Increase Servings
+            </div>
+          </div>
+
+          <div id="recipeLink">Directions: </div>
+            <div id="directions" ng-repeat="direction in directions">
+              {{direction}}
+            </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" ng-click="okok()">Okay</button>
+        <button class="btn" ng-click="cancelcancel()">Cancel</button>
+      </div>
+    </div>
+
+<!-- Display for own recipes -->
+  <div class="column">
+    <div class= "recipes">
+      <div class="imagecontainer">
+        <div class="imageInfo">
+          <div id="phototitle">{{recipe.title}}</div>
+          <div id="photoinfo">click photo for more info</div>
+        </div>
+        <img class='foodimage' ng-click="searchOwnIngredient(recipe); openOwn()" src="{{recipe.image_url}}">
+      </div>
+      <div class="bottomdescription">
+        <div class="recipeStats">
+          <div class="socialrank">Rank: {{recipe.social_rank}}</div>
+          <div class="publisher">{{recipe.publisher}}</div>
+        </div>
+        <br>
+        <div class="favicons"><img class="favheart" ng-click="deleteFavRecipe(recipe.recipe_id)" src="../../styles/img/favheart.png">
+        </div>
+      </div>
+      </div>
+
+      <div class="options">
+        <div id="delete1"  ng-click="open()">Update</div>
+        <div id="delete" ng-click="deleteYourRecipe(recipe._id)">Delete</div>
+      </div>
+
+
+    </div>
+</div>
+</div>
+
+<!-- Favorited recipes -->
+
+
+<div class="favoritedRecipes">
+
+  <h2 id="headers">Favorited Recipes</h2>
+
+  <div class="center"><button class="btn" id="button" type="submit" ng-click="goMakeThem()">Now Go Make Them</button></div>
+
+  <div class="recipesContainer">
+    <div class= "recipes" ng-repeat='recipe in userRecipes track by $index'>
+
+
+      <!-- modal for favorited recipes -->
+
+      <div modal="showModalFav" id="modalCustom" close="cancelFav()">
+        <div class="modal-header">
+            <h4>{{title}}</h4>
+        </div>
+        <div class="modalCustom-body">
+
+          <div class="recipeView">
+            <div class="recipeImage">
+              <img class="recipeImage" src='{{recipeImage}}'>
+            </div>
+
+            <div class="recipeDescription">
+              <h4 id="listofingredients">Ingredients</h4>
+            </div>
+
+            <div class="increaseServings">
+              <div class="selectServings" ng-show="servingsShown">
+                <div class="selectedServing" ng-show="servingsShown">
+                  <div class="servingsSelector" id="toptop"><div id="toptop">Select Increase</div></div>
+                </div>
+                <div class="selectedServing" ng-show="servingsShown">
+                  <div class="servingsSelector" ng-click="multiplyServings(list, .5)"><div>Cut in half</div><div>&#189;</div></div>
+                </div>
+                <div class="selectedServing" ng-show="servingsShown" ng-click="multiplyServings(list, 2)">
+                  <div class="servingsSelector"><div>Double</div><div>X 2</div></div>
+                </div>
+                <div class="selectedServing" ng-show="servingsShown" ng-click="multiplyServings(list, 4)">
+                  <div class="servingsSelector"><div>Quadruple</div><div>X 4</div></div>
+                </div>
+                <div id="customAdd" ng-show="custom">
+                  <input type='number' ng-model='num' ng-keyup="$event.keyCode == 13 && multiplyServings(num)"><div ng-click='multiplyServings(num)'>X</div>
+                </div>
+                <div id="selectedServing" ng-show="pleasework" ng-show="servingsShown">
+                  <div ng-click="addCustom()">Custom</div>
+                </div>
+              </div>
+              <div class="addServings" ng-show="servingsShown" ng-click="showServings()">
+                Cancel
+              </div>
+              <div class="addServings" ng-show="addShown" ng-click="showServings()">
+                Increase Servings
+              </div>
+            </div>
+
+            <div id="recipeLink">Recipe Link: <a id="link" href="{{recipeSource}}" target="_blank">{{recipeSource}}</a></div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" ng-click="okFav()">Okay</button>
+          <button class="btn" ng-click="cancelFav()">Cancel</button>
+        </div>
+      </div>
+
+      <!-- display for favorited recipes -->
+
+      <div class="imagecontainer">
+        <div class="imageInfo">
+          <div id="phototitle">{{recipe.recipe.title}}</div>
+          <div id="photoinfo">click photo for more info</div>
+        </div>
+        <div id="smoosh">
+          <img class='foodimage' ng-click="searchFavoriteIngredient(recipe.recipe); openOwn()" src="{{recipe.recipe.image_url}}">
+        </div>
+      </div>
+      <div class="bottomdescription">
+        <div class="recipeStats">
+          <div class="socialrank">Rank: {{recipe.recipe.social_rank}}</div>
+          <div class="publisher">{{recipe.recipe.publisher}}</div>
+        </div>
+        <br>
+        <div class="favicons"><img class="favheart" ng-click="deleteFavRecipe(recipe.recipe.recipe_id)" src="../../styles/img/heart.png">
+        </div>
+      </div>
+      </div>
+    </div>
+
+</div>
+
+</div>

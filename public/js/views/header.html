@@ -1,0 +1,48 @@
+<div class="toggleMenu" ng-show="toggleShown">
+  <div class="linkscontainer">
+
+    <div class="menuLinks"><a ui-sref="home"><div class="dash"></div><div class="headerLinks" ng-click="showToggle()">HOME</div></a></div>
+    <div class="menuLinks"><a ui-sref="ideas"><div class="dash"></div><div class="headerLinks" ng-click="showToggle()">IDEAS</div></a></div>
+    <div class="menuLinks"><a ui-sref="recipes"><div class="dash"></div><div class="headerLinks" ng-click="showToggle()">RECIPES</div></a></div>
+    <div class="menuLinks"><a ui-sref="search"><div class="dash"></div><div class="headerLinks" ng-click="showToggle()">BROWSE</div></a></div>
+
+    <div class="menuLinks"><a ui-sref="signIn">
+      <div class="dash"></div><div class="headerLink" ng-click="showToggle(); logOut()">SIGN UP / IN</div>
+    </a></div>
+
+  </div>
+</div>
+
+<div class="navbar" ng-click="showToggle()">
+  <div class="hamburger">Menu</div>
+  <div class="hamburger">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+</div>
+
+
+
+<container class="headerContainer">
+  <div class="homeicon">
+    <a ui-sref="home"><img src="../../styles/img/pan.png"></a>
+  </div>
+    <div class="searchheader"><search-bar></search-bar></div>
+    <div class="pagelinks">
+      <div class="pagebar"></div>
+      <a ui-sref="ideas"><p>IDEAS</p></a>
+    </div>
+    <div class="pagelinks">
+      <div class="pagebar2"></div>
+      <a ui-sref="recipes"><p>RECIPES</p></a>
+    </div>
+    <div class="pagelinks">
+      <div class="pagebar3"></div>
+      <a ui-sref="search"><p>BROWSE</p></a>
+    </div>
+    <div class="pagelinks">
+      <div class="pagebar4"></div>
+      <a ui-sref="signIn"><p ng-click="logOut()" id="logger">SIGNUP / IN</p></a>
+    </div>
+</container>
