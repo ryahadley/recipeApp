@@ -48,7 +48,7 @@ module.exports = {
     },
 
     Yours: function(req, res, next) {
-      Recipe.find({'publisher': req.user.name}, function(err, response) {
+      Recipe.find({'publisher': req.user.username}, function(err, response) {
         if(err) {
           console.log("????", err);
           return res.status(500).json(err);
