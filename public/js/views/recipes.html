@@ -185,7 +185,7 @@
                   <div class="servingsSelector"><div>Quadruple</div><div>X 4</div></div>
                 </div>
                 <div id="customAdd" ng-show="custom">
-                  <input type='number' ng-model='num' ng-keyup="$event.keyCode == 13 && multiplyServings(num)"><div ng-click='multiplyServings(num)'>X</div>
+                  <input type='number' ng-model='num' ng-keyup="$event.keyCode == 13 && multiplyServings(list, num)"><div ng-click='multiplyServings(list, num)'>X</div>
                 </div>
                 <div id="selectedServing" ng-show="pleasework" ng-show="servingsShown">
                   <div ng-click="addCustom()">Custom</div>
