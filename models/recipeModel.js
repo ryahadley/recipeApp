@@ -4,7 +4,7 @@ var recipeSchema = new mongoose.Schema({
 
     title: {type: String},
     recipe_id: {type: Number},
-    image_url: {type: String, default: "http://pbs.twimg.com/media/BZTEht_CcAAMpK6.jpg"},
+    image_url: {type: String, default: "../../styles/img/martha.jpg"},
     publisher: {type: String},
     ingredients: [String],
     directions: [String],

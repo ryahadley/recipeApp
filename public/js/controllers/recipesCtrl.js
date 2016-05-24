@@ -45,7 +45,9 @@ angular.module('recipeApp').controller('recipeCtrl', function($scope, recipeServ
     };
 
     $scope.multiplyServings = function(list, num) {
+      console.log('0', list, num);
       recipeServ.changeServings(list, num);
+      console.log('1', list, num);
       $scope.showServings();
     }
 
