@@ -5,6 +5,14 @@ angular.module('recipeApp').controller('collectionCtrl', function($scope, collec
       var username = $scope.user.data.username;
       recipe.publisher = username;
 
+      if(!recipe.image_url) {
+        var rand = Math.floor(Math.random() * 7);
+        var pic = ['../../styles/img/martha.jpg', '../../styles/img/martha.jpg', '../../styles/img/martha1.jpg', '../../styles/img/martha2.jpg',
+        '../../styles/img/martha3.jpg', '../../styles/img/martha4.jpg', '../../styles/img/martha5.jpg'];
+
+        recipe.image_url = rand[pic];
+      }
+
       $('.signUpForm').trigger("reset");
       collectionServ.addOwnRecipes(recipe)
       .then(function(response) {
