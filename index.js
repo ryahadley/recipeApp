@@ -132,7 +132,7 @@ mongoose.connection.once('open', function(){
     console.log('Connected to mongodb\n');
 });
 
-var port = 3000;
-app.listen(port, function() {
-  console.log('listening on port, ', port);
+
+app.listen(keys.serverPort, function() {
+  console.log('listening on port, ', keys.serverPort);
 });
