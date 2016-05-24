@@ -105,9 +105,9 @@ angular.module('recipeApp').controller('mainCtrl', function($scope, mainServ, re
       $scope.showModalOwn = true;
     };
 
-    // $scope.openFav = function() {
-    //   $scope.showModalFav = true;
-    // };
+    $scope.openFav = function() {
+      $scope.showModalFav = true;
+    };
 
     $scope.ok = function() {
       $scope.showModal = false;
@@ -121,11 +121,11 @@ angular.module('recipeApp').controller('mainCtrl', function($scope, mainServ, re
       $('.number').val('');
     };
 
-    // $scope.okFav = function() {
-    //   $scope.showModalFav = false;
-    //   $('.recipeDescription').empty();
-    //   $('.number').val('');
-    // };
+    $scope.okFav = function() {
+      $scope.showModalFav = false;
+      $('.recipeDescription').empty();
+      $('.number').val('');
+    };
 
     $scope.cancel = function() {
       $scope.showModal = false;
@@ -139,11 +139,11 @@ angular.module('recipeApp').controller('mainCtrl', function($scope, mainServ, re
       $('.number').val('');
     };
 
-    // $scope.cancelFav = function() {
-    //   $scope.showModalFav = false;
-    //   $('.recipeDescription').empty();
-    //   $('.number').val('');
-    // };
+    $scope.cancelFav = function() {
+      $scope.showModalFav = false;
+      $('.recipeDescription').empty();
+      $('.number').val('');
+    };
 
     $scope.favRecipe = function(recipeId) {
       if ($scope.user) {
