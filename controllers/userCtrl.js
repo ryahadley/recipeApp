@@ -72,7 +72,7 @@ module.exports = {
       FridgeAdd: function(req, res, next) {
         User.findOneAndUpdate({_id: req.user._id}, {$addToSet: {'inFridge': req.body}}, function(err, response) {
           if(err) {
-            console.log("huh", err);
+
             res.status(500).json(err);
           }
           res.status(200).json(response);
@@ -90,7 +90,7 @@ module.exports = {
 
     //first we have to find the user by their id, then we add the recipe id given to us through the req.body and add that on the the users current favorites. then we update the users information with the updated favorites.
     AddRecipeToFavorites: function(req, res, next){
-        console.log(req.params.id);
+
         Recipe.findOne({'recipe_id': req.params.id}, function(err, response) {
           if(err) {
             return res.status(500).json(err);
@@ -99,16 +99,16 @@ module.exports = {
             return res.status(500).json(err);
           }
           else {
-            console.log("what are you:", response);
+
             var recipeId = response._id;
           }
         User.findOneAndUpdate({_id: req.user._id}, {$addToSet: {'favorites': {'recipe': recipeId}}}, function(err1, response1) {
           if(err) {
-            console.log(err1);
+
             return res.status(500).json(err1);
           }
           else {
-            console.log('ryan', response1);
+
             return res.status(200).json(response1);
           }
         })
@@ -117,19 +117,19 @@ module.exports = {
 
     //first we find the user by their id, then we loop through their favorites until we find the matching id of the one we want to remove, we splice it out (favorites.recipes is an array) and update the users favorites with the new array.
     RemoveRecipeFromFavorites: function(req, res, next){
-        console.log(req.params.id);
+
         Recipe.findOne({'recipe_id': req.params.id}, function(err, response) {
           if(err) {
-            console.log("err", err);
+
             return res.status(500).json(err);
           }
           else {
-            console.log("res", response);
+
             var recipeId = response._id;
           }
         User.findOneAndUpdate({_id: req.user._id}, {$pull: {'favorites': {'recipe': recipeId}}}, function(err1, response1) {
           if(err1) {
-            console.log("err1", err1);
+        
             return res.status(500).json(err1);
           }
           else {

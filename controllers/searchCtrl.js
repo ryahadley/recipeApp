@@ -6,16 +6,16 @@ module.exports = {
 SearchCount: function(req, res , next) {
   Search.findOne({title: req.body.title}, function(err, response) {
     if(err) {
-      console.log('lll', err);
+
       res.status(500).json(err);
     }
     else if (response) {
-      console.log('!!', response);
+
       Search.findOneAndUpdate({title: req.body.title}, {$inc: {count: 1}}, function(err, response) {
         if(err) {
-          console.log('nope', err);
+          return res.status(500).send(err);
         }
-        console.log('yep', response);
+
         return response;
       })
 
@@ -34,18 +34,18 @@ SearchCount: function(req, res , next) {
   Searches: function(req, res, next) {
     Search.find({count: {$gt: 3}}, function(err, response) {
       if(err) {
-        console.log(err);
+        return res.status(500).send(err);
       }
       else {
-        console.log(response);
+
       }
     }).limit(20).exec(function(err, response) {
       if(err) {
-        console.log(err)
+
         return res.status(500).json(err);
       }
       else {
-        console.log(response);
+    
         return res.status(200).json(response);
       }
     })
