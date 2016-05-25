@@ -5150,7 +5150,7 @@ a.badge:hover {
 
 @media(max-width: 500px) {
   .modal {
-    top: 20%;
+    top: 10%;
     margin-left: 0%;
   }
   .modal-body {
@@ -5161,5 +5161,6 @@ a.badge:hover {
 @media(max-width: 400px) {
   .modal {
     margin-left: 0%;
-    max-width: 373px;  }
+    max-width: 373px;
+    }
 }
