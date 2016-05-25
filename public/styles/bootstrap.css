@@ -4175,7 +4175,7 @@ input[type="submit"].btn.btn-mini {
 
 .modal {
   position: fixed;
-  top: 10%;
+  top: 5%;
   /*left: 70%;*/
   margin: auto;
   z-index: 1050;
@@ -5161,5 +5161,6 @@ a.badge:hover {
 @media(max-width: 400px) {
   .modal {
     margin-left: 0%;
+    max-width: 373px;
   }
 }

@@ -264,6 +264,7 @@
 
 @media(max-width: 400px) {
   #modalCustom {
+    max-width: 373px;
     margin-left: 0%;
   }
 }

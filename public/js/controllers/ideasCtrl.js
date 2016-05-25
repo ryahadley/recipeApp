@@ -5,20 +5,20 @@ angular.module('recipeApp').controller('ideasCtrl', function($scope, $compile, $
   $scope.storesShown = false;
 
   $scope.tabShow = function() {
+    $scope.fridgeShown = true;
     $scope.storesShown = false;
     $scope.ingredientsShown = false;
-    $scope.fridgeShown = true;
   };
 
   $scope.tabShow2 = function() {
-    $scope.fridgeShown = false;
     $scope.ingredientsShown = true;
+    $scope.fridgeShown = false;
     $scope.storesShown = false;
   };
 
   $scope.tabShow3 = function() {
-    $scope.fridgeShown = false;
     $scope.storesShown = true;
+    $scope.fridgeShown = false;
     $scope.ingredientsShown = false;
   };
 
@@ -89,7 +89,7 @@ angular.module('recipeApp').controller('ideasCtrl', function($scope, $compile, $
   $scope.popularSearches = function() {
     ideasServ.getPopularSearches().
     then(function(response) {
-
+      console.log(response);
       $scope.Searches = response.data;
     })
   }

@@ -32,8 +32,8 @@ body {
 }
 
 .blur {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-position: 50% 50%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -105,21 +105,20 @@ a:link, a:visited {
 
 .userFade {
   color: rgb(223, 223, 223);
-  z-index: 20;
+  z-index: 200000;
   padding: 20px;
   z-index: 4000;
 }
 
 .userBackground {
   display: none;
-  top: 6%;
-  right: 4%;
+  top: 2%;
+  right: 2%;
   position: absolute;
   width: 120px;
   height: 80px;
   background: black;
   text-align: center;
-  opacity: .8;
   z-index: 30000;
 }
 
@@ -487,14 +486,21 @@ button#facebook {
     height: 38px;
     width: 40px;
   }
+  .searchbar {
+    right: -5px;
+  }
+  .userBackground {
+    top: 5%;
+    right: 3%;
+  }
 }
 
 @media(max-width: 700px) {
   .headerLinks {
-    margin-left: 30px;
+    margin-left: 60px;
   }
   .headerLink {
-    margin-left: 30px;
+    margin-left: 60px;
   }
   .wrapper {
     /*width: 60vw;*/
@@ -513,6 +519,15 @@ button#facebook {
   }
   .toggleMenu {
     width: 60vw;
+  }
+}
+
+@media(max-width: 500px) {
+  .headerLinks {
+    margin-left: 40px;
+  }
+  .headerLink {
+    margin-left: 40px;
   }
 }
 

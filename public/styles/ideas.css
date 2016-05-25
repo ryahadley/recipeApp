@@ -90,7 +90,7 @@
   line-height: 34px;
   outline: 0;
   font-size: 16px;
-  width: 40vw;
+  width: 25vw;
   max-width: 300px;
   padding-left: 10px;
 }
@@ -175,5 +175,8 @@
     text-align: left;
     margin-left: 80px;
     font-size: 50px;
+  }
+  .added {
+    width: 40vw;
   }
 }
