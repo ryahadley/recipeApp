@@ -5162,5 +5162,6 @@ a.badge:hover {
   .modal {
     margin-left: 0%;
     max-width: 373px;
+    max-height: 300px;
   }
 }
