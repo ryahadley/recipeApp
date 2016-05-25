@@ -20,7 +20,7 @@
 
 .signuppage {
   width: 100%;
-  height: 100%;
+  height: 110%;
   text-align: center;
   z-index: 1040;
   background: #000000 no-repeat center center;
@@ -133,7 +133,7 @@
   color: white;
   /*max-width: 500px;*/
   width: 40vw;
-  /*height: 100%;*/
+  height: 100%;
 }
 
 .signUpContainer {
