@@ -17,7 +17,7 @@ angular.module('recipeApp').controller('mainCtrl', function($scope, mainServ, re
             $('.userBackground').fadeIn(800);
             setTimeout(function() {
             $('.userBackground').fadeOut(800);
-          },1500);
+            },1500);
 
             $('#logger').text('LOGOUT');
             $('.headerLink').text('LOGOUT');
