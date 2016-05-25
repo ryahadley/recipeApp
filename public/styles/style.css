@@ -43,7 +43,7 @@ body {
   left:0;
   right:0;
   top:0;
-  bottom:0;
+  bottom:0px;
   background: url('./img/cuttingboard.jpg')  no-repeat center center fixed;
   background-size:cover;
   z-index:-1;
@@ -101,6 +101,26 @@ a:link, a:visited {
 
 .login p {
   text-align: center;
+}
+
+.userFade {
+  color: rgb(223, 223, 223);
+  z-index: 20;
+  padding: 20px;
+  z-index: 4000;
+}
+
+.userBackground {
+  display: none;
+  top: 6%;
+  right: 4%;
+  position: absolute;
+  width: 120px;
+  height: 80px;
+  background: black;
+  text-align: center;
+  opacity: .8;
+  z-index: 30000;
 }
 
 #welcome {
@@ -470,8 +490,11 @@ button#facebook {
 }
 
 @media(max-width: 700px) {
-  .linkscontainer {
-    margin-left: 10px;
+  .headerLinks {
+    margin-left: 30px;
+  }
+  .headerLink {
+    margin-left: 30px;
   }
   .wrapper {
     /*width: 60vw;*/

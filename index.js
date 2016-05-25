@@ -7,6 +7,8 @@ var keys = require('./keys');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var Facebook = require('passport-facebook').Strategy;
+var request = require('request');
+var http = require('http');
 
 //controllers
 var recipeCtrl = require('./controllers/recipeCtrl');
@@ -48,6 +50,9 @@ app.post('/api/recipes', recipeCtrl.Create);
 app.put('/api/recipes/:id', recipeCtrl.Update);
 app.delete('/api/recipes/:id', recipeCtrl.Delete);
 app.post('/api/make', recipeCtrl.Make);
+
+app.get('/allRecipes/:id', recipeCtrl.getRecipes);
+app.get('/ingredients/:id', recipeCtrl.getIngredients);
 
 //search
 app.post('/api/searchTerm', searchCtrl.SearchCount);

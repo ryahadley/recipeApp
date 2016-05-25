@@ -15,6 +15,11 @@
   margin-bottom: 80px;
 }
 
+#martha {
+  font-size: 14px;
+  font-weight: 300;
+}
+
 #inform {
   color: rgb(223, 223, 223);
   font-size: 60px;
@@ -151,6 +156,11 @@
   padding: 15px;
   /*width: 80vw;*/
   overflow-y: auto;
+}
+
+.flexwraper {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .column {

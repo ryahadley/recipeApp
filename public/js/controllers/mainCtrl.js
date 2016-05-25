@@ -8,9 +8,17 @@ angular.module('recipeApp').controller('mainCtrl', function($scope, mainServ, re
       }).then(function() {
         mainServ.getUser().then(function(response) {
           $scope.user = response;
+          $scope.username = response.data.username;
           $scope.userShown = !$scope.userShown;
+
+
           // $('#logger').text('LOGOUT');
           if($scope.user) {
+            $('.userBackground').fadeIn(800);
+            setTimeout(function() {
+            $('.userBackground').fadeOut(800);
+          },1500);
+
             $('#logger').text('LOGOUT');
             $('.headerLink').text('LOGOUT');
           } else {
@@ -145,10 +153,17 @@ angular.module('recipeApp').controller('mainCtrl', function($scope, mainServ, re
       $('.number').val('');
     };
 
-    $scope.favRecipe = function(recipeId) {
-      if ($scope.user) {
-      $('img', this).attr('src', '../../styles/img/heart.png');
+    $scope.favheart = true;
+    $scope.heart = false;
 
+    // $scope.change = function(index) {
+    //   $scope.favheart = !$scope.favheart;
+    //   $scope.heart = !$scope.heart;
+    // }
+
+    $scope.favRecipe = function(recipeId) {
+
+      if ($scope.user) {
       mainServ.addToFavorites(recipeId)
       .then(function(response) {
 

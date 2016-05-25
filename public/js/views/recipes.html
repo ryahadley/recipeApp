@@ -28,7 +28,9 @@
         <div id="bordertop"></div>
         <form class="signUpForm">
           <div class="form"><input class='recipefield' type="text" placeholder="recipe name" ng-model="recipe.title"></div>
-          <div class="form"><input class='recipefield' type="text" placeholder="image link" ng-model="recipe.image_url"></div>
+          <div class="form"><input class='recipefield' type="text" placeholder="image link" ng-model="recipe.image_url">
+          <p id="martha">* we will give you a default image if you don't have one</p>
+          </div>
           <div class="form"><textarea rows="5" class='recipefield' id="list" type="text" placeholder="ingredients" ng-model="recipe.ingredients"></textarea></div>
           <div class="form"><textarea rows="3" class='recipefield' id="list" type="text" placeholder="directions" ng-model="recipe.directions"></textarea></div>
           <!-- <div id="submit"><button class="btn btn-success" type="submit" ng-click="addNewRecipe(recipe); cancel()">Submit</button></div> -->
@@ -47,6 +49,7 @@
   </div>
 
   <!-- Own recipes -->
+<div class="flexwraper">
   <div class="recipesContainer" ng-repeat='recipe in ownRecipies track by $index'>
 
 
@@ -110,6 +113,8 @@
     </div>
 
 <!-- Display for own recipes -->
+
+
   <div class="column">
     <div class= "recipes">
       <div class="imagecontainer">
@@ -125,8 +130,9 @@
           <div class="publisher">{{recipe.publisher}}</div>
         </div>
         <br>
-        <div class="favicons"><img class="favheart" ng-click="deleteFavRecipe(recipe.recipe_id)" src="../../styles/img/favheart.png">
+        <div class="favicons" ng-click="heart = !heart; favheart = !favheart" ng-show="favheart"><img class="favheart" ng-click="favRecipe(recipe.recipe_id)" src="../../styles/img/favheart.png">
         </div>
+        <div class="favicons" ng-click="favheart = !favheart; heart = !heart" ng-show="heart"><img class="favheart" ng-click="deleteFavRecipe(recipe.recipe_id)" src="../../styles/img/heart.png"></div>
       </div>
       </div>
 
@@ -137,6 +143,7 @@
 
 
     </div>
+</div>
 </div>
 </div>
 
@@ -217,7 +224,7 @@
           <div id="photoinfo">click photo for more info</div>
         </div>
         <div id="smoosh">
-          <img class='foodimage' ng-click="searchFavoriteIngredient(recipe.recipe); openFav()" src="{{recipe.recipe.image_url}}">
+          <img class='foodimage' ng-click="searchFavoriteIngredient(recipe.recipe); openOwn()" src="{{recipe.recipe.image_url}}">
         </div>
       </div>
       <div class="bottomdescription">

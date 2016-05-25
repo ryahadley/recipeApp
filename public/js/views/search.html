@@ -6,7 +6,7 @@
 
 <search-bar class="searchMobile"></search-bar>
 
-  <div id="searchBy">Search by category <div class="spacer">
+  <div id="searchBy">Search by name <div class="spacer">
 
   </div> | <div class="spacer">
 
@@ -15,6 +15,13 @@
   </div> | <div class="spacer">
 
   </div> or multiple ingredients</div>
+
+<!-- <input type='text' ng-model='ingredient'>
+<button type="submit" ng-click="tester(ingredient)">CLICK</button>
+<br>
+<input type='text' ng-model='ing'>
+<button type="submit" ng-click="testyyy(ing)">CLICK</button> -->
+
 
 <div modal="showModal" close="cancel()">
   <div class="modal-header">
@@ -85,7 +92,9 @@
         <div class="publisher">{{recipe.publisher}}</div>
       </div>
       <br>
-      <div class="favicons"><img class="favheart" ng-click="favRecipe(recipe.recipe_id)" src="../../styles/img/favheart.png">
+      <div class="favicons" ng-click="heart = !heart; favheart = !favheart" ng-show="favheart"><img class="favheart" ng-click="favRecipe(recipe.recipe_id)" src="../../styles/img/favheart.png">
+      </div>
+      <div class="favicons" ng-click="favheart = !favheart; heart = !heart" ng-show="heart"><img class="favheart" ng-click="deleteFavRecipe(recipe.recipe_id)" src="../../styles/img/heart.png">
       </div>
     </div>
   </div>

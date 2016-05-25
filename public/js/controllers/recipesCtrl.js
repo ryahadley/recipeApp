@@ -58,4 +58,20 @@ angular.module('recipeApp').controller('recipeCtrl', function($scope, recipeServ
       })
     }
 
+
+    $scope.tester = function(ingredient) {
+      console.log('click', ingredient);
+      recipeServ.getTest(ingredient)
+      .then(function(response) {
+        console.log(response);
+      })
+    }
+
+    $scope.testyyy = function(ing) {
+      recipeServ.getTestIng(ing)
+      .then(function(response) {
+        console.log(response);
+      })
+    }
+
 });

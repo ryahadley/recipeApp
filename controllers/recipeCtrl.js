@@ -1,6 +1,9 @@
 var Recipe = require("../models/recipeModel.js");
 var mongoose = require("mongoose");
 var newRecipe = new Recipe;
+var http = require('http');
+var request = require('request');
+var keys = require('../keys');
 newRecipe.created_on = Date.now();
 newRecipe.save();
 
@@ -109,6 +112,44 @@ module.exports = {
           })
         }
       })
+    },
+
+
+    getRecipes: function (req, res, next) {
+      console.log('req', req.params.id);
+      request('http://food2fork.com/api/search?key=' + keys.apiKey + '&q=' + req.params.id, function (error, response, body) {
+      if(error) {
+        console.log(error);
+        return res.status(500).json(err);
+      }
+
+      if (!error && response.statusCode == 200) {
+
+      }
+      var parsed = JSON.parse(body);
+      console.log('p',parsed);
+
+      res.status(200).json(parsed);
+      })
+    },
+
+    getIngredients: function(req, res, next) {
+      request('http://food2fork.com/api/get?key=' + keys.apiKey + '&rId=' + req.params.id, function(error, response, body) {
+        if(error) {
+          console.log(error);
+          return res.status(500).json(err);
+        }
+        // if (!error && response.statusCode == 200) {
+        //
+        // }
+        var parsed = JSON.parse(body);
+        console.log('p', parsed);
+
+        res.status(200).json(parsed);
+      })
     }
 
-}
+
+
+
+  }
