@@ -48,34 +48,34 @@ angular.module('recipeApp').service('recipeServ', function($http, $q) {
 
   }
 
-  this.getTest = function(ingredient) {
-  console.log('click2', ingredient);
-  return $http({
-    method: "GET",
-    url: '/allRecipes/' + ingredient
-  }).then(function(response) {
-    for (var i = 0; i < response.data.recipes.length; i++) {
-      response.data.recipes[i].social_rank =
-      Math.floor(response.data.recipes[i].social_rank);
-    }
-    return response;
-    console.log(response);
-  })
-  }
-
-  this.getTestIng = function(ing) {
-    return $http({
-      method: "GET",
-      url: '/ingredients/' + ing
-    }).then(function(response) {
-      for (var i = 0; i < response.data.recipes.length; i++) {
-        response.data.recipes[i].social_rank =
-        Math.floor(response.data.recipes[i].social_rank);
-      }
-      console.log(response);
-      return response;
-    })
-  }
+  // this.getTest = function(ingredient) {
+  // console.log('click2', ingredient);
+  // return $http({
+  //   method: "GET",
+  //   url: '/allRecipes/' + ingredient
+  // }).then(function(response) {
+  //   for (var i = 0; i < response.data.recipes.length; i++) {
+  //     response.data.recipes[i].social_rank =
+  //     Math.floor(response.data.recipes[i].social_rank);
+  //   }
+  //   return response;
+  //   console.log(response);
+  // })
+  // }
+  //
+  // this.getTestIng = function(ing) {
+  //   return $http({
+  //     method: "GET",
+  //     url: '/ingredients/' + ing
+  //   }).then(function(response) {
+  //     for (var i = 0; i < response.data.recipes.length; i++) {
+  //       response.data.recipes[i].social_rank =
+  //       Math.floor(response.data.recipes[i].social_rank);
+  //     }
+  //     console.log(response);
+  //     return response;
+  //   })
+  // }
 
   this.changeServings = function(list, increaseBy) {
     $('.recipeDescription').empty();

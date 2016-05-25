@@ -54,7 +54,7 @@ angular.module('recipeApp')
 
           i++;
           }
-        }, 2000);
+        }, 200);
         $scope.ingredient = "";
       })
       }
