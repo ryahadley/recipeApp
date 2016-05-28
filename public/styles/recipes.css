@@ -389,7 +389,7 @@
 
 @media(max-width: 400px) {
   #modalCust {
-    max-width: 373px;
+    max-width: 100vw;
     margin-left: 0%;
   }
 }
