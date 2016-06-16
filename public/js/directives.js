@@ -24,6 +24,7 @@ angular.module('recipeApp')
         $state.go('search');
 
         if(response.data.count == 0) {
+          $('.sorry').empty();
           // $('#searchBy').css('display': 'none');
           $('.recipesContainer').append('<div class="sorry">');
           $('.sorry').append($(document.createElement('div')).text("could not find anything"));
