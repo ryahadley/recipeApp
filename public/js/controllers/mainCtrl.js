@@ -1,4 +1,4 @@
-langular.module('recipeApp').controller('mainCtrl', function($scope, mainServ, recipeServ, $state) {
+angular.module('recipeApp').controller('mainCtrl', function($scope, mainServ, recipeServ, $state) {
 
     $scope.apiRecipes;
 
