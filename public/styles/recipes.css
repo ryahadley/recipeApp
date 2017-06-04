@@ -286,8 +286,10 @@
   .searchMobile {
     display: block;
   }
-  .recipeImage {
-    /*max-width: 460px;*/
+  
+  .imageInfo {
+    visibility: visible;
+    opacity: 1;
   }
 }
 
